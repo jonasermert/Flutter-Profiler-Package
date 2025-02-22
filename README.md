@@ -1,39 +1,91 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# 🚀 Flutter Profiler
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+**A lightweight profiler package for Flutter & Dart.**  
+Easily measure execution times for API calls, UI widgets, and other processes using `start()` and `stop()`.  
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+![GitHub stars](https://img.shields.io/github/stars/jonasermert/flutter_profiler?style=social)  
+![Pub Version](https://img.shields.io/pub/v/flutter_profiler)  
+![License](https://img.shields.io/github/license/jonasermert/flutter_profiler)  
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
-## Features
+## 📌 Features  
+✅ **Easy to use** – `FlutterProfiler.start("Task")` and `FlutterProfiler.stop("Task")`  
+✅ **Stores all measurements as a timeline**  
+✅ **Logs execution times for debugging**  
+✅ **Can be used in any Flutter/Dart project**  
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+---
 
-## Getting started
+## 📦 Installation & Usage  
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use this package, add it to your dependencies in `pubspec.yaml`:  
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  flutter_profiler: ^1.0.0
 ```
 
-## Additional information
+Then import the package and start using it:  
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+import 'package:flutter_profiler/flutter_profiler.dart';
+
+void fetchData() async {
+  FlutterProfiler.start("API Request");
+  await Future.delayed(Duration(seconds: 2)); // Simulated API call
+  FlutterProfiler.stop("API Request");
+}
+
+class ProfilingTest extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    FlutterProfiler.start("Widget Build");
+    final widget = Container(color: Colors.blue, height: 100);
+    FlutterProfiler.stop("Widget Build");
+    return widget;
+  }
+}
+
+List<Map<String, dynamic>> data = FlutterProfiler.getTimeline();
+print(data);
+
+FlutterProfiler.clear();
+```
+
+📌 Sample output:  
+```json
+[
+  { "key": "API Request", "duration": 2000, "timestamp": "2025-02-12T12:34:56Z" }
+]
+```
+
+---
+
+## 🛠 Development & Testing  
+If you want to test the package locally, add the local package path in `pubspec.yaml`:  
+
+```yaml
+dependencies:
+  flutter_profiler:
+    path: ../flutter_profiler
+```
+
+Then run the example script:  
+
+```sh
+dart run example/example.dart
+```
+
+---
+
+## 📜 License  
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.  
+
+---
+
+## 🌟 Support & Contribute  
+⭐ **If you like this package, give it a star on GitHub!**  
+🐛 **Found a bug or have a suggestion?** Open an issue or submit a pull request!  
+
+📬 **Questions?** [Open an issue](https://github.com/jonasermert/flutter_profiler/issues)  
