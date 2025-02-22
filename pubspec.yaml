@@ -1,15 +1,13 @@
 name: flutter_profiler
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
-homepage: "https://github.com/dein-username/flutter_profiler"
-repository: "https://github.com/dein-username/flutter_profiler"
-
+repository: "https://github.com/jonasermert/flutter_profiler"
 
 environment:
   sdk: ^3.7.0
 
 dependencies:
-  # path: ^1.8.0
+
 
 dev_dependencies:
   lints: ^5.0.0
